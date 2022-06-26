@@ -1,3 +1,3 @@
-Parsed ais-data.json: File size is 5893411. Array size: 2214
-Parsed characteristics.json: File size is 528038. Array size: 109
-Program finished in 1008 ms.
+Parsed ais-data.json: File size is 5893411. Lots array size: 2214. Nr lot characteristics: 21271.
+Parsed characteristics.json: File size is 528038. Array size: 109. Nr of SXX characteristics: 73. Nr of Values: 1007
+Program finished in 1068 ms.

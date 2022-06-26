@@ -21,14 +21,14 @@ namespace ACA{
           Console.WriteLine($"Parsed ais-data.json: {RAD}");
           // read json input file 2
           Characteristics CH = new Characteristics();
-          string Rch = CH.Parse(@"Data\characteristics.json");
+          string Rch = CH.Parse(@"Data\characteristics.json", "nl");
           Console.WriteLine($"Parsed characteristics.json: {Rch}"); 
           // conclusion of the console app
           int ms = (int)(0.5 + (DateTime.Now - dtStart).TotalMilliseconds);
           Console.WriteLine($"Program finished in {ms} ms.");
         }
         catch(Exception exc){
-          Console.WriteLine($"Exception: {exc.Message}");
+          Console.WriteLine($"Exception: {exc.Message}, stack: {exc.StackTrace}");
         }
         Console.Read();
         return;
