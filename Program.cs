@@ -40,6 +40,7 @@ namespace ACA{
             LineNr++;
             Console.WriteLine($"{LineNr}. {LotsTxt}");
           }
+          ms = (int)(0.5 + (DateTime.Now - dtStart).TotalMilliseconds);
           Console.WriteLine($"{LineNr} lots displayed in {ms} ms.");
         }
         catch(Exception exc){

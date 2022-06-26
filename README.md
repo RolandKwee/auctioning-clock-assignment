@@ -150,7 +150,22 @@ Feel free to use open source libraries where available.
  - Unittests.
 
 #### In addition, please answer the following questions:
- - If we put this code into production, but found it too slow, or it needed to scale to many more lots, what are the first things you would think of to speed it up?
- - If you need to adapt your code to process live updates to already loaded lots, what are some of the techniques you could use?
+ - Q: If we put this code into production, but found it too slow, or it needed to scale to many more lots, what are the first things you would think of to speed it up?
 
+A: More RAM, avoid swap, faster CPU, change to a real database (e.g. Oracle), more cores / nodes, simpler data structure. As for timing, on this simple Celeron laptop, the parsing takes just over 1 second, and the listing about 1/5 s for over 2000 lots.
+
+ - Q: If you need to adapt your code to process live updates to already loaded lots, what are some of the techniques you could use?
+
+A: The C# Dictionaries, like database tables, can be updated by just adding or deleting some entries, without doing a full parse of the full data. This needs relatively simple additional parse methods in addition to those in my classes.
+
+### How to run this program
+
+This is a simple Visual Studio Code console application.
+
+To build, you will need to install the NuGet package for Newtonsoft JSON.
+
+To run and debug in VSC, just press F5.
+
+You can also run the executable in the Bin/Debug folder, but you may have to copy the Data folder yourself.
+With VisualStudio (no Code) there is a simple option to get the Data Folder in the output, but in VSC this apparently is different. The code shows warning output if Data cannot be found.
 

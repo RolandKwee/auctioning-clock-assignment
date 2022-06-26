@@ -2216,5 +2216,5 @@ Listing of all lots with ClockId = all, sorted by auction: unsorted
 2212. CHR T BALTICA, Zentoo, 33, 160, A1, Bloem/bes/vruchtkleur 1: wit, Hoesmateriaal: plastic, Hoesbedrukking algemeen: firma-bedrukking, Land van herkomst (bedrijf): Nederland, Overige informatie snijbloemen: Precooled, ====WARNING===== Characteristic not found: S97, Kwaliteitsgroep: A1, Minimum steellengte: 70 cm, Gewicht (gemiddeld): 105 gram, Rijpheidsstadium: 2-3
 2213. CHR T ALTAJ, Zentoo, 30, 240, A1, Bloem/bes/vruchtkleur 1: wit, Hoesmateriaal: plastic, Hoesbedrukking algemeen: firma-bedrukking, Land van herkomst (bedrijf): Nederland, Overige informatie snijbloemen: Precooled, ====WARNING===== Characteristic not found: S97, Kwaliteitsgroep: A1, Minimum steellengte: 70 cm, Gewicht (gemiddeld): 95 gram, Rijpheidsstadium: 2-3
 2214. CHR T BALTICA YELLOW, VannoVa Master Growers, 30, 80, A1, Hoesbedrukking algemeen: firma-bedrukking, Land van herkomst (bedrijf): Nederland, ====WARNING===== Characteristic not found: S97, Kwaliteitsgroep: A1, Minimum steellengte: 70 cm, Gewicht (gemiddeld): 105 gram, Rijpheidsstadium: 2-3
-2214 lots displayed in 1230 ms.
+2214 lots displayed in 184 ms.
 Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\6.0.5\System.Runtime.InteropServices.dll'. Cannot find or open the PDB file.
