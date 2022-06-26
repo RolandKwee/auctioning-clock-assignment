@@ -116,10 +116,67 @@ namespace Lib{
               NrLotCharacteristics++;
             }
           }
+          Lots.Add(AD);
         }//end foreach lot
         RetVal += $" Nr lot characteristics: {NrLotCharacteristics}.";
       }
       return RetVal;
+    }
+
+    /// <summary>
+    /// List all lots. 
+    /// Resolve characteric code and value code with the cleartext description.
+    /// This method can easily be called from a console application,
+    /// or from a GUI application, and has options to sort by auction, or to select one clock.
+    /// </summary>
+    /// <param name="TheCharacteristics"></param>
+    /// <param name="ClockId"></param>
+    /// <param name="OrderByAuction"></param>
+    /// <returns></returns>
+    public IEnumerable<string> EnumerateLots(Characteristics TheCharacteristics, string ClockId = "", bool OrderByAuction = false){
+      // Prerequisite is that the JSON input files must already be read and parsed. Check this.
+      if (Lots.Count == 0){
+          throw new Exception($"The JSON files are not yet read and parsed. Call Parse first.");
+      }
+      // output may be optionally sorted by AuctioningSequence
+      IEnumerable<Ais_Data> LotsForIteration = Lots;
+      if (OrderByAuction){
+        LotsForIteration = Lots.OrderBy(x => x.AuctioningSequence);
+      }
+      // scan all lots
+      foreach(Ais_Data Lot in LotsForIteration){
+        // output may only specify one particular auctioning clock
+        if (ClockId != null && ClockId != "" && ClockId != Lot.ClockId){
+          continue;
+        }
+        // compose the output text for the lot
+        string LotText = $"{Lot.ProductName}, {Lot.SupplierName}, {Lot.PackagesPerCarrier}, {Lot.NrOfCarriers}, {Lot.QualityCode}";
+        // get translations for the characteristics codes
+        foreach(Ais_Data_Characteristics ADC in Lot.Lot_Characteristics.OrderBy(x => x.SortingRank)){
+          // only SXX codes are stored. Probably ContainsKey is slow
+          //if (TheCharacteristics.Characteristics_SXX_NL.ContainsKey(ADC.Code)){
+          if (ADC.Code != null && ADC.Code != "" && ADC.Code[0] == 'S')
+          {
+            // characteristic S97 is in ais_data.json, but not in characteristics.json, so ContainsKey is needed
+            if (TheCharacteristics.Characteristics_SXX_NL.ContainsKey(ADC.Code)){
+              string CharDesc = TheCharacteristics.Characteristics_SXX_NL[ADC.Code];
+              string CharValCode = $"{ADC.Code}{ADC.Value}";
+              // characteristic 'S98' has value 'A2' but first lot has value 'A2 ', with extra space, strip that
+              CharValCode = CharValCode.Trim();
+              // char value S20 036 is not in char.json
+              if (TheCharacteristics.Values.ContainsKey(CharValCode)){
+                string ValueDesc = TheCharacteristics.Values[CharValCode];
+                LotText += $", {CharDesc}: {ValueDesc}";
+              }else{
+                LotText += $", =====WARNING===== Characteristic value not found: {ADC.Code}{ADC.Value}";
+              }
+            }else{
+              LotText += $", ====WARNING===== Characteristic not found: {ADC.Code}";
+            }
+          }
+        }
+        yield return LotText;
+      }
     }
   }//end cl
 }//end ns
